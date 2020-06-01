@@ -12,13 +12,29 @@ h1 {
     display: block;
     width: 50%;
     height: 15%;
-    margin: 0 auto;    
+    margin: 0 auto;
 }
 
 .slot {
     display: inline-block;
     box-sizing: border-box;
-    width: 32%;
+    width: 32.7%;
     height: 99%;
-    border: 1px solid black;
+    background-color: white;
+}
+
+#row-one {
+    border-bottom: 5px solid black;
+}
+
+#row-two {
+    border-bottom: 5px solid black;
+}
+
+.column-one {
+    border-right: 5px solid black;
+}
+
+.column-two {
+    border-right: 5px solid black;
 }
