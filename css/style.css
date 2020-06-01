@@ -32,6 +32,22 @@ h1 {
     opacity: 80%;
 }
 
+.game-over {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    opacity: 50%;
+}
+
+h2 {
+    text-align: center;
+    top: 50%;
+}
+
 
 /*GRID LINES ############################## */
 #row-one {border-bottom: 5px solid black;}

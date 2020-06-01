@@ -14,8 +14,14 @@ const backgroundChange = function (blockId) {
 const pSelect = function (blockId) {
     $(blockId).on('click', function () {
         backgroundChange(blockId);
-        tictac.selectBlock();
+        tictac.selectBlock(blockId);
     });
+}
+
+const gameOver = function () {
+    $('#winner').text(tictac.winner);
+    $('.game-over').show();
+
 }
 
 $(document).ready(function () {
