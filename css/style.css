@@ -23,18 +23,8 @@ h1 {
     background-color: white;
 }
 
-#row-one {
-    border-bottom: 5px solid black;
-}
-
-#row-two {
-    border-bottom: 5px solid black;
-}
-
-.column-one {
-    border-right: 5px solid black;
-}
-
-.column-two {
-    border-right: 5px solid black;
-}
+/*GRID LINES ############################## */
+#row-one {border-bottom: 5px solid black;}
+#row-two {border-bottom: 5px solid black;}
+.column-one {border-right: 5px solid black;}
+.column-two {border-right: 5px solid black;}
