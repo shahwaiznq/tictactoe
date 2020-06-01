@@ -1,10 +1,20 @@
+const tictac = game;
+
+let player1Icon = 'url(img/bunny.gif)';
+let player2Icon = 'url(img/monkey.gif)';
+
 const backgroundChange = function (blockId) {
-    $(blockId).css('background-image', 'url(img/bunny.gif)');
+    if (tictac.playerTurn === 'player1'){
+        $(blockId).css('background-image', player1Icon);
+    }  else {
+        $(blockId).css('background-image', player2Icon);
+    }
 }
 
 const pSelect = function (blockId) {
     $(blockId).on('click', function () {
         backgroundChange(blockId);
+        tictac.selectBlock();
     });
 }
 
