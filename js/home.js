@@ -22,10 +22,18 @@ const pSelect = function (blockId) {
     });
 }
 
+const resetBoard = function () {
+    $('div.row div').css('background-image', 'none');
+    tictac.reset()
+    $('.game-over').css('display', 'none');
+}
+
 const gameOver = function () {
     $('#winner').text(tictac.winner);
     $('.game-over').css('display', 'flex');
-
+    window.setTimeout(() => {
+        resetBoard();
+    }, 3000);
 }
 
 $(document).ready(function () {

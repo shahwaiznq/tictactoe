@@ -88,4 +88,8 @@ const game = {
         } 
         return null;
     },
+
+    reset: function () {
+        this.board = [["","",""],["","",""],["","",""]];
+    },
 }

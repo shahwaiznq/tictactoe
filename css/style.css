@@ -6,6 +6,8 @@ html, body {
 h1 {
     text-align: center;
     margin-bottom: 10%;
+    font-family: 'Dancing Script', cursive;
+    font-size: 5em;
 }
 
 .row {
