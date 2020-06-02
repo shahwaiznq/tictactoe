@@ -1,6 +1,6 @@
 const game = {
-    player1: {id: 'player1', name: 'Shahwaiz', score: 0},
-    player2: {id: 'player2', name: 'Majin Boo', score: 0},
+    player1: {id: 'player1', name: 'Player One', score: 0},
+    player2: {id: 'player2', name: 'Player Two', score: 0},
     Nobody: {id: 'Nobody', name: 'Nobody', score: 0},
     playerTurn: 'player1',
 
