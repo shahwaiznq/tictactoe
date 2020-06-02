@@ -1,4 +1,21 @@
- Project #0: The Game
+# A  Tic Tac Toe game for your browser
+
+## Features
+
+- 
+
+
+
+
+
+
+
+
+
+
+
+
+Project #0: The Game
 Overview
 Let's start out with something fun - a game!
 

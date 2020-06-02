@@ -13,14 +13,18 @@ const backgroundChange = function (blockId) {
 
 const pSelect = function (blockId) {
     $(blockId).on('click', function () {
-        backgroundChange(blockId);
-        tictac.selectBlock(blockId);
+        if(tictac.blockOccupied(blockId) === false){
+            backgroundChange(blockId);
+            tictac.selectBlock(blockId);
+        } else {
+            console.log('Pick a free tile dummbass')
+        }
     });
 }
 
 const gameOver = function () {
     $('#winner').text(tictac.winner);
-    $('.game-over').show();
+    $('.game-over').css('display', 'flex');
 
 }
 

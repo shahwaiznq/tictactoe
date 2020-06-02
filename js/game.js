@@ -45,6 +45,14 @@ const game = {
         return slots;
     },
 
+    blockOccupied: function (blockId) {
+        let x = this.searchBlock(blockId);
+        if (this.board[x[0]][x[1]] === "") {
+            return false;
+        }
+        return true;
+    },
+
     checkWinner: function () {
         //horzontal
         for (let i = 0; i < 3; i++) {
@@ -68,7 +76,7 @@ const game = {
             gameOver();
             return this.winner;
         } 
-        if (this.board[0][3] === this.board[1][1] && this.board[0][3] === this.board[3][0] && this.board[0][3] != ""){
+        if (this.board[0][2] === this.board[1][1] && this.board[0][2] === this.board[2][0] && this.board[0][2] != ""){
             this.winner = this.playerTurn;
             gameOver();
             return this.winner;
