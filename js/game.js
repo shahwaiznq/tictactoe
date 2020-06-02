@@ -1,6 +1,7 @@
 const game = {
-    player1: '',
-    player2: '',
+    player1: {id: 'player1', name: 'Shahwaiz', score: 0},
+    player2: {id: 'player2', name: 'Majin Boo', score: 0},
+    Nobody: {id: 'Nobody', name: 'Nobody', score: 0},
     playerTurn: 'player1',
 
     winner: '',
@@ -9,10 +10,18 @@ const game = {
     webpage: [['#one','#two','#three'],['#four','#five','#six'],['#seven','#eight','#nine']],
 
     changePlayer: function () {
-        if (this.playerTurn === 'player1'){
-            this.playerTurn = 'player2';
+        if (this.playerTurn === this.player1.id){
+            this.playerTurn = this.player2.id;
         } else {
-            this.playerTurn = 'player1';
+            this.playerTurn = this.player1.id;
+        }
+    },
+
+    otherPlayer: function () {
+        if (this.playerTurn === this.player1.id){
+            return this.player2.id;
+        } else {
+            return this.player1.id;
         }
     },
 
@@ -82,7 +91,7 @@ const game = {
             return this.winner;
         }
         if (this.openSlots() === 0){
-            this.winner = 'No one';
+            this.winner = 'Nobody';
             gameOver();
             return this.winner;
         } 
