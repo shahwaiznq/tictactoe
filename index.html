@@ -7,6 +7,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Orbitron:wght@800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
     <script src="js/jquery.js"></script>
+    <script src="js/jquery-ui.js"></script>
     <script src="js/game.js"></script>
     <script src="js/home.js"></script>
 </head>
@@ -46,6 +47,19 @@
         <span class="names">Ties</span>
         <br>
         <span id="score3" class="scores">0</span>
+    </div>
+    
+
+    <div id="player-choose" class="chooser">
+        <div class="name-select">
+            Select Name and Character
+            <input type="text" placeholder="Enter Name" id="player-name">
+            <input type="button" value="Confirm" id="player-confirm">
+        </div>
+        <div class="char-select" id="bunny"></div>
+        <div class="char-select" id="monkey"></div>
+        <div class="char-select" id="kitten"></div>
+        <div class="char-select" id="chicken"></div>
     </div>
 </body>
 </html>
