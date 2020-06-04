@@ -145,6 +145,13 @@ const compMove = function (difficulty) {
             }
         }
     }
+    if (difficulty === 'medium') {
+        if (Math.random() < 0.5) {
+            compMove('hard');
+        } else {
+            compMove('easy');
+        }
+    }
     if (difficulty === 'hard') {
         let coord = tictac.bestMove();
         let column = coord[0];
@@ -180,7 +187,7 @@ $(document).ready(function () {
     });
 
     addDifficulty('easy');
-    //addDifficulty('medium');
+    addDifficulty('medium');
     addDifficulty('hard');
 
 
