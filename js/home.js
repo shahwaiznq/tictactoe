@@ -3,6 +3,11 @@ const tictac = game;
 let player1Icon = 'url(img/bunny.gif)';
 let player2Icon = 'url(img/monkey.gif)';
 
+let computer = false;
+let human = false;
+
+let difficulty = '';
+
 let bunny;
 let monkey;
 let chicken;
@@ -36,11 +41,14 @@ const backgroundChange = function (blockId) {
     }
 }
 
-const pSelect = function (blockId) {
+const pSelect = function (blockId, checkvs = computer) {
     $(blockId).on('click', function () {
         if(tictac.blockOccupied(blockId) === false){
             backgroundChange(blockId);
             tictac.selectBlock(blockId);
+            if(checkvs){
+                console.log('this works')
+            }
         } else {
             console.log('Pick a free tile dummbass')
         }
@@ -92,54 +100,126 @@ const tokenAssign = function (animal, num, player) {
     });
 }
 
+const opponentReset = function () {
+    computer = false;
+    human = false;
+    $('#pvp').css('opacity', '100%');
+    $('#pve').css('opacity', '100%');
+    $('#difficulty').hide("slide", { direction: "left" }, 500);
+}
+
+const difficultyReset = function () {
+    $('#easy').css('opacity', '100%');
+    $('#medium').css('opacity', '100%');
+    $('#hard').css('opacity', '100%');
+}
+
+const addDifficulty = function (level) {
+    $(`#${level}`).on('click', function() {
+        difficultyReset();
+        $(`#${level}`).css('opacity', '50%');
+        difficulty = level;
+    });
+}
+
 $(document).ready(function () {
 
+    $('.character').hide();
+    $('#difficulty').hide();
+    $('.chooser').css('border-top', '15px solid grey');
     $('.chooser').addClass('slide-up', 1000, 'easeOutBounce');
 
-    tokenAssign('bunny', 1, 1);
-    tokenAssign('monkey', 2, 1);
-    tokenAssign('chicken', 3, 1);
-    tokenAssign('kitten', 4, 1);
+    $('#pvp').on('click', function () {
+        opponentReset();
+        human = true;
+        $('#pvp').css('opacity', '50%');
+    });
+    $('#pve').on('click', function () {
+        opponentReset();
+        computer = true;
+        $('#pve').css('opacity', '50%');
+        $('#difficulty').show("slide", { direction: "left" }, 1000);
+    });
 
-    const p1Conf = $('#player-confirm').on('click', function () {
-        tictac.player1.name = $('#player-name').val();
-        if (playerPicked(1)){
-            buttonOff();
-            player1Icon = tictac.player1.token;
-            $('#p1-name').text(tictac.player1.name);
-            tokenAssign('bunny', 1, 2);
-            tokenAssign('monkey', 2, 2);
-            tokenAssign('chicken', 3, 2);
-            tokenAssign('kitten', 4, 2);
-            $(selected).remove();
+    addDifficulty('easy');
+    addDifficulty('medium');
+    addDifficulty('hard');
+
+
+    $('#computer-confirm').on('click', function () {
+        if (human || (computer && difficulty !== '')) {
             $('.chooser').addClass('slide-down', 1000, 'easeOutBounce', function () {
-                $('.chooser').removeClass('slide-up')
-                $('.chooser').removeClass('slide-down')
-                $('.chooser').css('border-top', '15px solid blue')
+                $('.chooser').removeClass('slide-up');
+                $('.chooser').removeClass('slide-down');
+                $('.chooser').css('border-top', '15px solid red');
+                $('.opponent').hide();
+                $('.character').show();
                 $('.chooser').addClass('slide-up', 1000, 'easeOutBounce');
             });
-            $('#player-name').val('');
-            
-            
-            const p2Conf = $('#player-confirm').on('click', function () {
-                tictac.player2.name = $('#player-name').val();
-                if (playerPicked(2)){
-                    clearTimeout(timeout);
-                    player2Icon = tictac.player2.token;
-                    $('#p2-name').text(tictac.player2.name);
-                    $('.chooser').addClass('slide-down', 1000, 'easeOutBounce');
-                    
-                    $('player-confirm').off();
-                    $('.chooser').remove();
-                    pSelect('#one');
-                    pSelect('#two');
-                    pSelect('#three');
-                    pSelect('#four');
-                    pSelect('#five');
-                    pSelect('#six');
-                    pSelect('#seven');
-                    pSelect('#eight');
-                    pSelect('#nine');
+
+
+            tokenAssign('bunny', 1, 1);
+            tokenAssign('monkey', 2, 1);
+            tokenAssign('chicken', 3, 1);
+            tokenAssign('kitten', 4, 1);
+
+            const p1Conf = $('#player-confirm').on('click', function () {
+                tictac.player1.name = $('#player-name').val();
+                if (playerPicked(1)){
+                    buttonOff();
+                    player1Icon = tictac.player1.token;
+                    $('#p1-name').text(tictac.player1.name);
+                    tokenAssign('bunny', 1, 2);
+                    tokenAssign('monkey', 2, 2);
+                    tokenAssign('chicken', 3, 2);
+                    tokenAssign('kitten', 4, 2);
+                    $('.chooser').addClass('slide-down', 1000, 'easeOutBounce', function () {
+                        $(selected).remove();
+                        $('#player-name').val('');
+                    });
+
+                    if (computer) {
+                        tictac.player2.name = 'Computer';
+                        $('#p2-name').text(tictac.player2.name);
+
+                        pSelect('#one');
+                                pSelect('#two');
+                                pSelect('#three');
+                                pSelect('#four');
+                                pSelect('#five');
+                                pSelect('#six');
+                                pSelect('#seven');
+                                pSelect('#eight');
+                                pSelect('#nine');
+
+                    } else {
+                        $('.chooser').addClass('slide-down', 1000, 'easeOutBounce', function () {
+                            $('.chooser').removeClass('slide-up')
+                            $('.chooser').removeClass('slide-down')
+                            $('.chooser').css('border-top', '15px solid blue')
+                            $('.chooser').addClass('slide-up', 1000, 'easeOutBounce');
+                        });
+                        const p2Conf = $('#player-confirm').on('click', function () {
+                            tictac.player2.name = $('#player-name').val();
+                            if (playerPicked(2)){
+                                player2Icon = tictac.player2.token;
+                                $('#p2-name').text(tictac.player2.name);
+                                $('.chooser').addClass('slide-down', 1000, 'easeOutBounce');
+                                
+                                $('#player-confirm').off();
+                                $('.chooser').remove();
+                                pSelect('#one');
+                                pSelect('#two');
+                                pSelect('#three');
+                                pSelect('#four');
+                                pSelect('#five');
+                                pSelect('#six');
+                                pSelect('#seven');
+                                pSelect('#eight');
+                                pSelect('#nine');
+                            }
+                        });
+                    }
                 }
             });
         }

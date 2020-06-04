@@ -51,15 +51,30 @@
     
 
     <div id="player-choose" class="chooser">
-        <div class="name-select">
+        <div class="character">
+            <div class="name-select">
             Select Name and Character
             <input type="text" placeholder="Enter Name" id="player-name">
             <input type="button" value="Confirm" id="player-confirm">
+            </div>
+            <div class="char-select" id="bunny"></div>
+            <div class="char-select" id="monkey"></div>
+            <div class="char-select" id="kitten"></div>
+            <div class="char-select" id="chicken"></div>
         </div>
-        <div class="char-select" id="bunny"></div>
-        <div class="char-select" id="monkey"></div>
-        <div class="char-select" id="kitten"></div>
-        <div class="char-select" id="chicken"></div>
+        <div class="opponent">
+            <div id="whotovs">
+                 Who would you like to play?
+                <div class='opponent-options' id="pvp">Player vs Player</div>
+                <div class='opponent-options' id="pve">Player vs Computer</div>
+                <div class='opponent-options' id="computer-confirm">Confirm</div>
+            </div>
+            <div id="difficulty">
+                <div class='opponent-options diff' id="easy">Easy</div>
+                <div class='opponent-options diff' id="medium">Medium</div>
+                <div class='opponent-options diff' id="hard">Hard</div>
+            </div>
+        </div>
     </div>
 </body>
 </html>

@@ -92,6 +92,66 @@ h2 {
     width: 100%;
     border-top: 15px solid red;
     border-radius: 50px;
+    
+}
+
+.opponent {
+    width: 90%;
+    height: 90%;
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+#whotovs {
+    width: 45%;
+    height: 100%;
+    vertical-align: middle;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1em;
+}
+
+.opponent-options {
+    display: inline;
+    width: 90%;
+    margin: auto;
+    text-align: center;
+    background-color: darkgray;
+    border-radius: 10px;
+    padding: 5% 0;
+    font-size: 0.em;
+    color: white;
+    font-family: 'Orbitron', sans-serif;
+}
+
+#computer-confirm {
+    background-color: limegreen;
+    font-size: 1.2em;
+}
+
+#difficulty {
+    width: 45%;
+    height: 100%;
+    vertical-align: middle;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.diff {
+    padding: 2%;
+}
+
+.character {
+    display: flex;
+    height: 100%;
+    width: 100%;
     flex-direction: row;
     justify-content: space-around;
 }
@@ -102,6 +162,7 @@ h2 {
     background-position: center;
     background-repeat: no-repeat;
 }
+
 
 .name-select div {
     display: block;
