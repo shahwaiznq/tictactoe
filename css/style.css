@@ -119,12 +119,12 @@ h2 {
 .opponent-options {
     display: inline;
     width: 90%;
-    margin: auto;
+    margin: 2% auto;
     text-align: center;
     background-color: darkgray;
     border-radius: 10px;
-    padding: 5% 0;
-    font-size: 0.em;
+    padding: 2%;
+    font-size: 0.8em;
     color: white;
     font-family: 'Orbitron', sans-serif;
 }
@@ -144,8 +144,8 @@ h2 {
     justify-content: space-around;
 }
 
-.diff {
-    padding: 2%;
+#difficulty .diff {
+    padding: 1%;
 }
 
 .character {

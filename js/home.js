@@ -148,7 +148,7 @@ $(document).ready(function () {
     $('.character').hide();
     $('#difficulty').hide();
     $('.chooser').css('border-top', '15px solid grey');
-    $('.chooser').addClass('slide-up', 1000, 'easeOutBounce');
+    $('.chooser').addClass('slide-up', 600, 'easeOutBounce');
 
     $('#pvp').on('click', function () {
         opponentReset();
@@ -159,7 +159,7 @@ $(document).ready(function () {
         opponentReset();
         computer = true;
         $('#pve').css('opacity', '50%');
-        $('#difficulty').show("slide", { direction: "left" }, 1000);
+        $('#difficulty').show("slide", { direction: "left" }, 600);
     });
 
     addDifficulty('easy');
@@ -169,13 +169,13 @@ $(document).ready(function () {
 
     $('#computer-confirm').on('click', function () {
         if (human || (computer && difficulty !== '')) {
-            $('.chooser').addClass('slide-down', 1000, 'easeOutBounce', function () {
+            $('.chooser').addClass('slide-down', 600, 'easeOutBounce', function () {
                 $('.chooser').removeClass('slide-up');
                 $('.chooser').removeClass('slide-down');
                 $('.chooser').css('border-top', '15px solid red');
                 $('.opponent').hide();
                 $('.character').show();
-                $('.chooser').addClass('slide-up', 1000, 'easeOutBounce');
+                $('.chooser').addClass('slide-up', 600, 'easeOutBounce');
             });
 
 
@@ -194,7 +194,7 @@ $(document).ready(function () {
                     tokenAssign('monkey', 2, 2);
                     tokenAssign('chicken', 3, 2);
                     tokenAssign('kitten', 4, 2);
-                    $('.chooser').addClass('slide-down', 1000, 'easeOutBounce', function () {
+                    $('.chooser').addClass('slide-down', 600, 'easeOutBounce', function () {
                         $(selected).remove();
                         $('#player-name').val('');
                     });
@@ -214,18 +214,18 @@ $(document).ready(function () {
                                 pSelect('#nine');
 
                     } else {
-                        $('.chooser').addClass('slide-down', 1000, 'easeOutBounce', function () {
+                        $('.chooser').addClass('slide-down', 600, 'easeOutBounce', function () {
                             $('.chooser').removeClass('slide-up')
                             $('.chooser').removeClass('slide-down')
                             $('.chooser').css('border-top', '15px solid blue')
-                            $('.chooser').addClass('slide-up', 1000, 'easeOutBounce');
+                            $('.chooser').addClass('slide-up', 600, 'easeOutBounce');
                         });
                         const p2Conf = $('#player-confirm').on('click', function () {
                             tictac.player2.name = $('#player-name').val();
                             if (playerPicked(2)){
                                 player2Icon = tictac.player2.token;
                                 $('#p2-name').text(tictac.player2.name);
-                                $('.chooser').addClass('slide-down', 1000, 'easeOutBounce');
+                                $('.chooser').addClass('slide-down', 600, 'easeOutBounce');
                                 
                                 $('#player-confirm').off();
                                 $('.chooser').remove();
