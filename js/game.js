@@ -101,4 +101,6 @@ const game = {
     reset: function () {
         this.board = [["","",""],["","",""],["","",""]];
     },
+
+    
 }

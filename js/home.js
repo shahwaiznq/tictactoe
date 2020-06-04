@@ -1,7 +1,7 @@
 const tictac = game;
 
 let player1Icon = 'url(img/bunny.gif)';
-let player2Icon = 'url(img/monkey.gif)';
+let player2Icon = 'url(img/comp.gif)';
 
 let computer = false;
 let human = false;
@@ -47,7 +47,9 @@ const pSelect = function (blockId, checkvs = computer) {
             backgroundChange(blockId);
             tictac.selectBlock(blockId);
             if(checkvs){
-                console.log('this works')
+                if (tictac.playerTurn === tictac.player2.id) {
+                    compMove(difficulty);
+                }
             }
         } else {
             console.log('Pick a free tile dummbass')
@@ -70,6 +72,8 @@ const resetBoard = function () {
 const gameOver = function () {
     $('#winner').text(tictac[tictac.winner].name);
     tictac[tictac.winner].score++;
+    tictac.reset();
+    tictac.winner = '';
     updateScores();
     $('.game-over').css('display', 'flex');
     window.setTimeout(() => {
@@ -122,6 +126,23 @@ const addDifficulty = function (level) {
     });
 }
 
+const compMove = function (difficulty) {
+    if (difficulty === 'easy') {
+        while (tictac.playerTurn === tictac.player2.id) {
+            let x= Math.floor(Math.random()*3);
+            let y= Math.floor(Math.random()*3);
+            let selected = tictac.webpage[x][y];
+            if(tictac.blockOccupied(selected) === false){
+                backgroundChange(selected);
+                tictac.selectBlock(selected);
+            } else {
+                console.log('computer thinking')
+            }
+        }
+    }
+
+}
+
 $(document).ready(function () {
 
     $('.character').hide();
@@ -142,8 +163,8 @@ $(document).ready(function () {
     });
 
     addDifficulty('easy');
-    addDifficulty('medium');
-    addDifficulty('hard');
+    //addDifficulty('medium');
+    //addDifficulty('hard');
 
 
     $('#computer-confirm').on('click', function () {
