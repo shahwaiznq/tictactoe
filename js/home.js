@@ -72,12 +72,17 @@ const resetBoard = function () {
 const gameOver = function () {
     $('#winner').text(tictac[tictac.winner].name);
     tictac[tictac.winner].score++;
-    tictac.reset();
-    tictac.winner = '';
+    tictac.board = []
+    //tictac.winner = '';
     updateScores();
     $('.game-over').css('display', 'flex');
     window.setTimeout(() => {
+        tictac.reset();
         resetBoard();
+        if  (tictac.winner === tictac.player1.id && computer) {
+            tictac.playerTurn = tictac.player2.id;
+            compMove(difficulty);
+        }
     }, 3000);
 }
 
@@ -128,7 +133,7 @@ const addDifficulty = function (level) {
 
 const compMove = function (difficulty) {
     if (difficulty === 'easy') {
-        while (tictac.playerTurn === tictac.player2.id) {
+        while (tictac.playerTurn !== tictac.player1.id) {
             let x= Math.floor(Math.random()*3);
             let y= Math.floor(Math.random()*3);
             let selected = tictac.webpage[x][y];
@@ -138,6 +143,18 @@ const compMove = function (difficulty) {
             } else {
                 console.log('computer thinking')
             }
+        }
+    }
+    if (difficulty === 'hard') {
+        let coord = tictac.bestMove();
+        let column = coord[0];
+        let row = coord[1];
+        let selected = tictac.webpage[column][row];
+        if(tictac.blockOccupied(selected) === false){
+            backgroundChange(selected);
+            tictac.selectBlock(selected);
+        } else {
+            console.log('computer thinking')
         }
     }
 
@@ -164,7 +181,7 @@ $(document).ready(function () {
 
     addDifficulty('easy');
     //addDifficulty('medium');
-    //addDifficulty('hard');
+    addDifficulty('hard');
 
 
     $('#computer-confirm').on('click', function () {

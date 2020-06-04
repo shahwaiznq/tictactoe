@@ -102,5 +102,104 @@ const game = {
         this.board = [["","",""],["","",""],["","",""]];
     },
 
-    
+    bestMove: function () {
+        // AI to make its turn
+        let bestScore = -Infinity;
+        let move;
+        for (let i = 0; i < 3; i++) {
+          for (let j = 0; j < 3; j++) {
+            // Is the spot available?
+            if (this.board[i][j] == '') {
+              this.board[i][j] = this.player2.id;
+              let score = this.minimax(this.board, 0, false);
+              this.board[i][j] = '';
+              if (score > bestScore) {
+                bestScore = score;
+                move = { i, j };
+              }
+            }
+          }
+        }
+        return [move.i, move.j];
+    },
+
+    scores: {
+        player1: -10,
+        player2: 10,
+        tie: 0
+    },
+
+    minimax: function (board, depth, isMaximizing) {
+        let result = this.checkWin();
+        if (result !== null) {
+          return this.scores[result];
+        }
+      
+        if (isMaximizing) {
+          let bestScore = -Infinity;
+          for (let i = 0; i < 3; i++) {
+            for (let j = 0; j < 3; j++) {
+              // Is the spot available?
+              if (board[i][j] == '') {
+                board[i][j] = this.player2.id;
+                let score = this.minimax(board, depth + 1, false);
+                board[i][j] = '';
+                bestScore = Math.max(score, bestScore);
+              }
+            }
+          }
+          return bestScore;
+        } else {
+          let bestScore = Infinity;
+          for (let i = 0; i < 3; i++) {
+            for (let j = 0; j < 3; j++) {
+              // Is the spot available?
+              if (board[i][j] == '') {
+                board[i][j] = this.player1.id;
+                let score = this.minimax(board, depth + 1, true);
+                board[i][j] = '';
+                bestScore = Math.min(score, bestScore);
+              }
+            }
+          }
+          return bestScore;
+        }
+    },
+
+    equals3: function (a, b, c) {
+        return a == b && b == c && a != '';
+    },
+
+
+    checkWin: function () {
+        let winner = null;
+      
+        // horizontal
+        for (let i = 0; i < 3; i++) {
+          if (this.equals3(this.board[i][0], this.board[i][1], this.board[i][2])) {
+            winner = this.board[i][0];
+          }
+        }
+      
+        // Vertical
+        for (let i = 0; i < 3; i++) {
+          if (this.equals3(this.board[0][i], this.board[1][i], this.board[2][i])) {
+            winner = this.board[0][i];
+          }
+        }
+      
+        // Diagonal
+        if (this.equals3(this.board[0][0], this.board[1][1], this.board[2][2])) {
+          winner = this.board[0][0];
+        }
+        if (this.equals3(this.board[2][0], this.board[1][1], this.board[0][2])) {
+          winner = this.board[2][0];
+        }
+      
+        if (winner == null && this.openSlots() == 0) {
+          return 'tie';
+        } else {
+          return winner;
+        }
+    }
 }
